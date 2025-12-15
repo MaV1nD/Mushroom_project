@@ -6,13 +6,12 @@ services:
     image: postgres:15
     environment:
       POSTGRES_DB: mushroom_db
-      POSTGRES_USER: postgres      # В Docker используем стандартного юзера
-      POSTGRES_PASSWORD: postgres  # И стандартный пароль
+      POSTGRES_USER: postgres    
+      POSTGRES_PASSWORD: postgres  
     ports:
       - "5433:5432" 
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql
 
   # 2. Python AI
   mushroom_ai:
