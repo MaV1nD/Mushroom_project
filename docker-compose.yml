@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  # 1. База данных (в Docker)
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_DB: mushroom_db
+      POSTGRES_USER: postgres      # В Docker используем стандартного юзера
+      POSTGRES_PASSWORD: postgres  # И стандартный пароль
+    ports:
+      - "5433:5432" 
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # 2. Python AI
+  mushroom_ai:
+    build: ./ai-service
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./ai-service:/app
+
+  # 3. Java Backend
+  backend:
+    build: ./java-server
+    ports:
+      - "8080:8080"
+    environment:
+      # ПЕРЕОПРЕДЕЛЯЕМ настройки из application.properties для Docker:
+      - DB_HOST=db             # Имя сервиса базы данных (см. строку 5)
+      - DB_PORT=5432           # Внутри докера порт стандартный 5432
+      - DB_USER=postgres       # Юзер, которого мы создали в сервисе db
+      - DB_PASSWORD=postgres   # Пароль из сервиса db
+      - AI_HOST=mushroom_ai    # Имя сервиса с нейросетью
+    depends_on:
+      - db
+      - mushroom_ai
+    volumes:
+      - ./java-server/uploads:/app/uploads
+
+volumes:
+  postgres_data:

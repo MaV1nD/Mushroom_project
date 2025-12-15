@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+python-multipart
+tensorflow-cpu
+pillow           # Для работы с изображениями
+numpy

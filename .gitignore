@@ -1,0 +1,41 @@
+# --- IntelliJ IDEA & Editors ---
+.idea/
+*.iml
+.vscode/
+*.iws
+*.ipr
+out/
+
+# --- Java / Maven (Server & Client) ---
+target/
+*.class
+*.jar
+*.war
+*.ear
+# Исключаем, чтобы не заливать собранный exe или jar клиента
+*.exe
+
+# --- Python (AI Service) ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+env/
+.env
+.pytest_cache/
+
+# --- Project Specific (User Data) ---
+# Не загружаем картинки, которые загружают пользователи
+uploads/
+java-server/uploads/
+# Если ты создавал папку для базы данных локально
+postgres_data/
+
+# --- OS Specific ---
+.DS_Store
+Thumbs.db
+
+# --- Docker ---
+# Обычно мы не игнорируем docker-compose, но если есть локальные переопределения:
+docker-compose.override.yml
