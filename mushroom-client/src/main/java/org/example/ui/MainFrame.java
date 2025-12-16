@@ -299,7 +299,7 @@ public class MainFrame extends JFrame {
 
     private JPanel createProfilePanel() {
         JPanel panel = new JPanel(new GridBagLayout());
-        panel.setBackground(Color.GREEN);
+        panel.setBackground(Color.WHITE);
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.insets = new Insets(10, 10, 10, 10);
         gbc.fill = GridBagConstraints.HORIZONTAL;
